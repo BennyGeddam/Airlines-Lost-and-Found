@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+{% extends "spot_items/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<div>
+    <h1>Update Item: {{ item.title }}</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-outline-danger">Now Update!</button>
+    </form>
+    <a class="btn btn-secondary" href="{% url 'spot_items:detail' item.pk %}">Cancel</a>
+</div>
+{% endblock %}

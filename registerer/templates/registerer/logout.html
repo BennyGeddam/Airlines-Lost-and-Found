@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+{% extends "spot_items/base.html" %}
+{% block content %}
+<div>
+    <h2 style="color:white;">You have been logged out</h2>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            <a style="color:#45A29E; font-size: 1.5rem; text-decoration: none;" href="{% url 'registerer:loginview' %}">Log In Again</a>
+        </small>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% extends "spot_items/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form method="POST" autocomplete="off">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend class="text-center mb-4" style="color: #50ACE4;">Create Your Account</legend>
+                    {{ form|crispy }}
+                </fieldset>
+                <div class="form-group text-center mt-3">
+                    <button class="btn btn-danger btn-lg w-100" type="submit">@Sign Up</button>
+                </div>
+                <div class="border-top pt-3 text-center mt-3">
+                    <small>
+                        Already have an account?
+                        <a href="{% url 'registerer:loginview' %}" style="color: #50ACE4; text-decoration: none;">@Log In</a>
+                    </small>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

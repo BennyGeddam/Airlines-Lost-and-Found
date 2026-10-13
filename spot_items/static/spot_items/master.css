@@ -1,0 +1,40 @@
+/* styles for container */
+
+.container {
+  color: #f9b2b2;
+  height: auto;
+  width: auto;
+  margin: 0 auto;
+  border-radius: 24px;
+  background-color: #262626e9;
+  margin-bottom: 8px;
+}
+
+/* styles forcards */
+
+.card {
+  color: #000000;
+  background-color: #ffffff;
+  border-radius: 16px;
+  max-width: 255px;
+  overflow: hidden;
+  width: 100%;
+  height: auto;
+  margin-bottom: 8px;
+}
+
+.card img {
+  border-radius: 16px;
+  width: 100%;
+  height: auto;
+}
+
+ /* styles for image details */
+
+.detail-image {
+  max-width: 100%;
+  max-height: 400px;
+  display: block;
+  margin: 0 auto;
+  border-radius: 10px;
+}

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% extends "spot_items/base.html" %}
+{% block content %}
+{% load static %}
+<head>
+    <title>Review Section</title>
+</head>
+<body>
+    <div>
+        <h2>Give Your Feedback Here</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-light">Send it</button>
+        </form>
+        <a href="{% url 'spot_items:home' %}" class="btn btn-dark">To Home</a>
+    </div>
+</body>
+{% endblock %}

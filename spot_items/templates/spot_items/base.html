@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <title>Airlines Lost And Found Services</title>
+    <link rel="stylesheet" href="{% static 'spot_items/master.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+</head>
+<body style="background-image: url('{% static 'spot_items/images/background.jpg' %}'); background-size: cover;">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #005c4e;">
+        <div class="container-fluid">
+            <a class="navbar-brand btn btn-outline-danger" href="{% url 'spot_items:cri' %}">Lost your belongings...? Try Finding Here!</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <form method="post" action="{% url 'registerer:logoutview' %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-outline-dark">Logout</button>
+                        </form>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-dark" href="{% url 'spot_items:home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-dark" href="{% url 'spot_items:reportlostitem' %}">Report Lost Item</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-dark" href="{% url 'airport_staff:submit_feedbacks' %}">Submit Feedback</a>
+                    </li>
+                    {% if user.is_staff %}
+                    <li class="nav-item">
+                        <a class="btn btn-outline-dark" href="{% url 'airport_staff:airport_staff_dashboard' %}">Dashboard</a>
+                    </li>
+                    {% endif %}
+                    {% else %}
+                    <div class="d-inline-flex">
+                        <a class="btn btn-outline-dark me-1" href="{% url 'registerer:register' %}">Register</a>
+                        <a class="btn btn-outline-dark" href="{% url 'registerer:loginview' %}">Login</a>
+                    </div>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-3">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
+</body>
+</html>

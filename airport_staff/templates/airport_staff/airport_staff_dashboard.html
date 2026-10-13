@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% extends "spot_items/base.html" %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <h1>STAFF Dashboard:</h1>
+    </div>
+    <div>
+        <h2>@Reviews</h2>
+        <ul>
+            {% for review in feedbacks_list %}
+                <li>
+                    {{ review.created_at|date:"F d, Y" }} : {{ review.feedback_text }} by {{ review.user.username }} - Rating: {{ review.rating }}
+                    <form action="{% url 'airport_staff:feedback_deletion' review.id %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-warning btn-sm">Remove This Review</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div>
+        <h2 class="text-center mt-5">History of Spotted Items</h2>
+        <ul>
+            {% for item in founditems_list %}
+                <li>
+                    Found This {{ item.title }} At {{ item.found_location }}--{{ item.item_found_by.username }}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

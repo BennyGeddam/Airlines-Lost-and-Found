@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% extends "spot_items/base.html" %}
+{% load static %}
+{% block content %}
+<div>
+    <h1>{{ item.title }}</h1>
+    <img src="{{ item.image.url }}" alt="{{ item.title }}" class="detail-image">
+</div>
+<div>
+    <p><strong>Location:</strong> {{ item.location }}</p>
+    <p><strong>Description:</strong> {{ item.description }}</p>
+    <p><strong>Date Lost:</strong> {{ item.lost_date|date:"d F, Y" }}</p>
+    <p><strong>Email:</strong> {{ item.email }}</p>
+    <p><strong>Reported By:</strong>
+        {% if item.reported_by %}
+            {{ item.reported_by.username }}
+        {% else %}
+            Unknown
+        {% endif %}
+    </p>
+    <form method="post" action="{% url 'spot_items:found' item.pk %}">
+        {% csrf_token %}
+        <input type="hidden" name="item" value="{{ item.pk }}" />
+        <input type="text" name="location" placeholder="Location found" required />
+        <button type="submit" class="btn btn-outline-success">Found This Item!</button>
+    </form>
+    <a class="btn btn-dark" href="{% url 'spot_items:home' %}">Back to home</a>
+
+    <h2>Update Item Details</h2>
+    <form method="post" enctype="multipart/form-data" action="{% url 'spot_items:update_lostitem' item.pk %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>
+{% endblock %}
